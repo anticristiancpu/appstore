@@ -1,8 +1,8 @@
 manifestVersion: 1
-id: pkvault
-name: PKVault
-tagline: Pokemon Save Editor
-icon: https://github.com/Chnapy/PKVault/raw/main/frontend/public/logo.svg
+id: sparkles-hello-world2
+name: Hello World2
+tagline: Replace this tagline with your app's tagline
+icon: https://svgur.com/i/mvA.svg
 category: Development
 version: "1.0.0"
 port: 4000
