@@ -5,9 +5,11 @@ services:
     environment:
       APP_HOST: anticristiancpu-grimmory_web_1
       APP_PORT: 6060
+    depends_on:
+      - web
 
   web:
-    image: ghcr.io/grimmory-tools/grimmory:latest
+    image: grimmory/grimmory:latest
     restart: on-failure
     environment:
       USER_ID: "1000"
