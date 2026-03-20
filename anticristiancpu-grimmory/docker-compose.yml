@@ -3,49 +3,36 @@ version: "3.7"
 services:
   app_proxy:
     environment:
-      APP_HOST: anticristiancpu-grimmory_grimmory_1
+      APP_HOST: anticristiancpu-grimmory_web_1
       APP_PORT: 6060
-    depends_on:
-      - grimmory
 
-  grimmory:
+  web:
     image: ghcr.io/grimmory-tools/grimmory:latest
     restart: on-failure
     environment:
-      - USER_ID=1000
-      - GROUP_ID=1000
-      - TZ=Europe/Rome
-      - DATABASE_URL=jdbc:mariadb://mariadb:3306/grimmory
-      - DATABASE_USERNAME=grimmory
-      - DATABASE_PASSWORD=grimmory_pass
+      USER_ID: "1000"
+      GROUP_ID: "1000"
+      TZ: "Europe/Rome"
+      DATABASE_URL: "jdbc:mariadb://mariadb:3306/grimmory"
+      DATABASE_USERNAME: "grimmory"
+      DATABASE_PASSWORD: "grimmory_pass"
     depends_on:
       - mariadb
     volumes:
       - ${APP_DATA_DIR}/data/app:/app/data
       - ${APP_DATA_DIR}/data/books:/books
       - ${APP_DATA_DIR}/data/bookdrop:/bookdrop
-    healthcheck:
-      test: wget -q -O - http://localhost:6060/api/v1/healthcheck
-      interval: 60s
-      retries: 5
-      start_period: 60s
-      timeout: 10s
 
   mariadb:
     image: lscr.io/linuxserver/mariadb:11.4.5
     restart: on-failure
     environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Rome
-      - MYSQL_ROOT_PASSWORD=grimmory_root
-      - MYSQL_DATABASE=grimmory
-      - MYSQL_USER=grimmory
-      - MYSQL_PASSWORD=grimmory_pass
+      PUID: "1000"
+      PGID: "1000"
+      TZ: "Europe/Rome"
+      MYSQL_ROOT_PASSWORD: "grimmory_root"
+      MYSQL_DATABASE: "grimmory"
+      MYSQL_USER: "grimmory"
+      MYSQL_PASSWORD: "grimmory_pass"
     volumes:
       - ${APP_DATA_DIR}/data/mariadb/config:/config
-    healthcheck:
-      test: ["CMD", "mariadb-admin", "ping", "-h", "localhost"]
-      interval: 5s
-      timeout: 5s
-      retries: 10
