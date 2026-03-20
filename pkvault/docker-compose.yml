@@ -1,14 +1,14 @@
-services:
-  pkvault:
-    image: ghcr.io/chnapy/pkvault:${TAG:-latest}
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: pkvault
-    ports:
-      - "3000:3000"
-    volumes:
-      - ./pkvault-data:/pkvault
+  version: "3.7"
 
-      # you must add in app settings save paths: /pkvault/saves/
-      - ./pkvault-saves:/pkvault/saves
+services:
+
+  app_proxy:
+    environment:
+      # The format here is: <app-id>_<docker-service-name>_1
+      APP_HOST: sparkles-hello-world_server_1
+      APP_PORT: 3000
+    
+  server:
+    image: image: ghcr.io/chnapy/pkvault:${TAG:-latest}
+    user: "1050:1050"
+    init: true
