@@ -2,8 +2,9 @@ version: "3.7"
 
 services:
   app_proxy:
+    image: getumbrel/app-proxy-rs:v0.3.0
     environment:
-      APP_HOST: pkvault_web_1
+      APP_HOST: anticristiancpu-pkvault_web_1
       APP_PORT: 3000
     depends_on:
       - web
