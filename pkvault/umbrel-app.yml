@@ -1,30 +1,20 @@
 manifestVersion: 1
-id: sparkles-hello-world2
-name: Hello World2
-tagline: Replace this tagline with your app's tagline
-icon: https://svgur.com/i/mvA.svg
-category: Development
-version: "1.0.0"
-port: 4000
+id: pkvault
+category: utilities
+name: PKVault
+version: "latest"
+tagline: Gestione centralizzata dei box e dei salvataggi Pokémon.
 description: >-
-  Add your app's description here.
-
-
-  You can also add newlines!
-
-developer: Umbrel
-website: https://umbrel.com
-submitter: Umbrel
-submission: https://github.com/getumbrel/umbrel-hello-world-app
-repo: https://github.com/getumbrel/umbrel-hello-world-app
-support: https://github.com/getumbrel/umbrel-hello-world-app/issues
-gallery:
-  - https://i.imgur.com/yyVG0Jb.jpeg
-  - https://i.imgur.com/yyVG0Jb.jpeg
-  - https://i.imgur.com/yyVG0Jb.jpeg
-releaseNotes: >-
-  Add what's new in the latest version of your app here.
+  PKVault è uno strumento di archiviazione e manipolazione dei salvataggi Pokémon basato su PKHeX. 
+  Simile a Pokémon Home, ma progettato per funzionare totalmente offline. Permette di spostare Pokémon 
+  tra diversi salvataggi, convertirli tra generazioni e gestire il tuo Pokédex direttamente dal server.
+developer: Chnapy
+website: https://github.com/Chnapy/pkvault
 dependencies: []
+repo: https://github.com/Chnapy/pkvault
+support: https://github.com/Chnapy/pkvault/issues
+port: 3000
+gallery: []
 path: ""
 defaultUsername: ""
 defaultPassword: ""
