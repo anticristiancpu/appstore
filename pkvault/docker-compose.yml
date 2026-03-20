@@ -1,14 +1,16 @@
-  version: "3.7"
+version: "3.7"
 
 services:
-
   app_proxy:
     environment:
-      # The format here is: <app-id>_<docker-service-name>_1
-      APP_HOST: sparkles-hello-world_server_1
+      APP_HOST: pkvault_web_1
       APP_PORT: 3000
-    
-  server:
+    depends_on:
+      - web
+
+  web:
     image: ghcr.io/chnapy/pkvault:latest
-    user: "1050:1050"
-    init: true
+    restart: on-failure
+    volumes:
+      - ${APP_DATA_DIR}/data:/pkvault
+      - ${APP_DATA_DIR}/saves:/pkvault/saves
