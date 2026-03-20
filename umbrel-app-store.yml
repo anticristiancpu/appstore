@@ -1,4 +1,2 @@
-name: "Il mio App Store per Umbrel"
-description: "Repository personale per le mie app custom."
-apps:
-  - pkvault
+id: "anticristiancpu"
+name: "Anticristiancpu Store"
