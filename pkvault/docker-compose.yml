@@ -9,6 +9,6 @@ services:
       APP_PORT: 3000
     
   server:
-    image: ghcr.io/chnapy/pkvault:${TAG:-latest}
+    image: ghcr.io/chnapy/pkvault:latest
     user: "1050:1050"
     init: true
