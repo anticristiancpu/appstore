@@ -5,8 +5,6 @@ services:
     environment:
       APP_HOST: anticristiancpu-pinakes_nginx_1
       APP_PORT: 80
-    depends_on:
-      - nginx
 
   pinakes:
     image: ghcr.io/jbenamy/pinakes-docker:latest
@@ -23,8 +21,7 @@ services:
       DB_PASS: pinakes
       DB_NAME: pinakes
     depends_on:
-      mariadb:
-        condition: service_healthy
+      - mariadb
 
   nginx:
     image: ghcr.io/jbenamy/pinakes-docker-nginx:latest
