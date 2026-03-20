@@ -1,0 +1,21 @@
+manifestVersion: 1
+id: "anticristiancpu-pinakes"
+category: media
+name: "Pinakes"
+version: "latest"
+tagline: "Sistema di gestione bibliotecaria (ILS) e catalogo pubblico."
+icon: https://storage.googleapis.com/fileuploads/Fotos_Web/Web_2022/Logo-Pinakes.webp
+description: >-
+  Pinakes è un sistema di gestione per biblioteche completo e self-hosted.
+  Offre catalogazione automatica, circolazione dei prestiti, un catalogo pubblico (OPAC) 
+  e la gestione diretta di file digitali (e-book e audiolibri). 
+developer: "Fabio D'Alez / Docker by J. Benamy"
+website: "https://github.com/fabiodalez-dev/Pinakes"
+dependencies: []
+repo: "https://github.com/jbenamy/pinakes-docker"
+support: "https://github.com/jbenamy/pinakes-docker/issues"
+port: 8081
+gallery: []
+path: ""
+defaultUsername: ""
+defaultPassword: ""
