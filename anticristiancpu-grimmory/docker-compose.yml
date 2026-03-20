@@ -1,60 +1,50 @@
+version: "3.8"
+
 services:
-  # Upgrade path from Booklore:
-  # Keep your existing service name, container_name, database names/users, ports,
-  # and mounted volumes. Replace only the image line(s) with Grimmory tags.
   grimmory:
-    # Stable release example:
-    image: grimmory/grimmory:v0.38.2
-    # Convenience tag:
-    # image: grimmory/grimmory:latest
-    # Or the GHCR image:
-    # image: ghcr.io/grimmory-tools/grimmory:v0.38.2
-    # The image already embeds its own release version metadata.
+    image: grimmory/grimmory:latest
     container_name: grimmory
-    environment:
-      - USER_ID=1000
-      - GROUP_ID=1000
-      - TZ=Etc/UTC
-      - DATABASE_URL=jdbc:mariadb://mariadb:3306/grimmory
-      - DATABASE_USERNAME=grimmory
-      - DATABASE_PASSWORD=your_secure_password
-      - SWAGGER_ENABLED=false
-      - FORCE_DISABLE_OIDC=false
-      # ALLOWED_ORIGINS=
-      # JAVA_TOOL_OPTIONS=-XX:+UseSerialGC -Xmx256m -XX:+UseCompactObjectHeaders -XX:+ExitOnOutOfMemoryError
+    restart: unless-stopped
     depends_on:
       mariadb:
         condition: service_healthy
     ports:
-      - "6060:6060"
+      - "${APP_GRIMMORY_PORT:-9091}:9091"
+    environment:
+      APP_USER_ID: "1000"
+      APP_GROUP_ID: "1000"
+      TZ: "Europe/Rome"
+      DATABASE_URL: "jdbc:mariadb://mariadb:3306/grimmory"
+      DB_USER: "grimmory"
+      DB_PASSWORD: "GrimmoryPass2025!"
+      DISK_TYPE: "LOCAL"
     volumes:
-      - ./data:/app/data
-      - ./books:/books
-      - ./bookdrop:/bookdrop
-    healthcheck:
-      test: wget -q -O - http://localhost:6060/api/v1/healthcheck
-      interval: 60s
-      retries: 5
-      start_period: 60s
-      timeout: 10s
-    restart: unless-stopped
+      - "${APP_DATA_DIR}/data/books:/books"
+      - "${APP_DATA_DIR}/data/config:/config"
+    networks:
+      - grimmory_network
 
   mariadb:
-    image: lscr.io/linuxserver/mariadb:11.4.8
-    container_name: mariadb
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Etc/UTC
-      - MYSQL_ROOT_PASSWORD=super_secure_password
-      - MYSQL_DATABASE=grimmory
-      - MYSQL_USER=grimmory
-      - MYSQL_PASSWORD=your_secure_password
-    volumes:
-      - ./config:/config
+    image: mariadb:11
+    container_name: grimmory-mariadb
     restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: "GrimmoryRoot2025!"
+      MYSQL_DATABASE: "grimmory"
+      MYSQL_USER: "grimmory"
+      MYSQL_PASSWORD: "GrimmoryPass2025!"
+      DB_USER_ID: "1000"
+      DB_GROUP_ID: "1000"
+    volumes:
+      - "${APP_DATA_DIR}/data/db:/var/lib/mysql"
+    networks:
+      - grimmory_network
     healthcheck:
-      test: [ "CMD", "mariadb-admin", "ping", "-h", "localhost" ]
-      interval: 5s
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
       timeout: 5s
-      retries: 10
+      retries: 5
+
+networks:
+  grimmory_network:
+    driver: bridge
