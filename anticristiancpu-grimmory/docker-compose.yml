@@ -1,4 +1,4 @@
-version: "3.8"
+version: "3.7"
 
 services:
   grimmory:
@@ -22,32 +22,36 @@ services:
       - "${APP_DATA_DIR}/data:/app/data"
       - "${APP_DATA_DIR}/books:/books"
       - "${APP_DATA_DIR}/bookdrop:/bookdrop"
+    healthcheck:
+      test: wget -q -O - http://localhost:6060/api/v1/healthcheck
+      interval: 60s
+      retries: 5
+      start_period: 60s
+      timeout: 10s
     networks:
       - grimmory_network
-    healthcheck:
-      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://localhost:6060"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
 
   mariadb:
-    image: mariadb:11
+    image: lscr.io/linuxserver/mariadb:11.4.5
     container_name: grimmory-mariadb
     restart: unless-stopped
     environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Rome
       - MYSQL_ROOT_PASSWORD=ChangeMe_MariaDBRoot_2025!
       - MYSQL_DATABASE=grimmory
       - MYSQL_USER=grimmory
       - MYSQL_PASSWORD=ChangeMe_Grimmory_2025!
     volumes:
-      - "${APP_DATA_DIR}/db:/var/lib/mysql"
+      - "${APP_DATA_DIR}/mariadb:/config"
+    healthcheck:
+      test: ["CMD", "mariadb-admin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
     networks:
       - grimmory_network
-    healthcheck:
-      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
 
 networks:
   grimmory_network:
