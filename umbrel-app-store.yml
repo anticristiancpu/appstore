@@ -1,2 +1,4 @@
-id: "sparkles" # Choose the ID for your app store. This should contain only alphabets ("a to z") and dashes ("-").
-name: "Sparkles" # Choose the name of your app store. It will show up in the UI as "<name> App Store".
+name: "Il mio App Store per Umbrel"
+description: "Repository personale per le mie app custom."
+apps:
+  - pkvault
