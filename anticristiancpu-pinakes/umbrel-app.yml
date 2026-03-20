@@ -4,7 +4,7 @@ category: media
 name: "Pinakes"
 version: "latest"
 tagline: "Sistema di gestione bibliotecaria (ILS) e catalogo pubblico."
-icon: https://storage.googleapis.com/fileuploads/Fotos_Web/Web_2022/Logo-Pinakes.webp
+icon: https://github.com/fabiodalez-dev/Pinakes/raw/main/public/assets/brand/social.jpg
 description: >-
   Pinakes è un sistema di gestione per biblioteche completo e self-hosted.
   Offre catalogazione automatica, circolazione dei prestiti, un catalogo pubblico (OPAC) 
