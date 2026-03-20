@@ -4,7 +4,7 @@ category: media
 name: "Grimmory"
 version: "latest"
 tagline: "Gestore avanzato di e-book e librerie digitali."
-logo: https://www.homedock.cloud/images/app-store-icons/ogfallback/booklore_1x1.jpg
+icon: https://www.homedock.cloud/images/app-store-icons/ogfallback/booklore_1x1.jpg
 description: >-
   Grimmory (il successore open-source di BookLore) è una piattaforma self-hosted 
   completa per la gestione, la lettura e la condivisione della tua libreria digitale. 
