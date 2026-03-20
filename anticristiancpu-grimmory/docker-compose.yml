@@ -1,41 +1,48 @@
 version: "3.7"
 
 services:
-  grimmory:
-    image: ghcr.io/grimmory-tools/grimmory:latest
-    container_name: grimmory
+  booklore:
+    image: booklore/booklore:latest
+    container_name: booklore
     restart: unless-stopped
     depends_on:
       mariadb:
         condition: service_healthy
     ports:
-      - "${APP_GRIMMORY_PORT:-6060}:6060"
+      - "${APP_BOOKLORE_PORT:-6060}:6060"
     environment:
-      - APP_USER_ID=1000
-      - APP_GROUP_ID=1000
+      - USER_ID=1000
+      - GROUP_ID=1000
       - TZ=Europe/Rome
-      - DATABASE_URL=jdbc:mariadb://mariadb:3306/grimmory
-      - DB_USER=grimmory
-      - DB_PASSWORD=ChangeMe_Grimmory_2025!
+      - DATABASE_URL=jdbc:mariadb://mariadb:3306/booklore
+      - DATABASE_USERNAME=booklore
+      - DATABASE_PASSWORD=ChangeMe_BookLore_2025!
       - DISK_TYPE=LOCAL
     volumes:
       - "${APP_DATA_DIR}/data:/app/data"
       - "${APP_DATA_DIR}/books:/books"
       - "${APP_DATA_DIR}/bookdrop:/bookdrop"
+    healthcheck:
+      test: wget -q -O - http://localhost:6060/api/v1/healthcheck
+      interval: 60s
+      retries: 5
+      start_period: 60s
+      timeout: 10s
     networks:
-      - grimmory_network
+      - booklore_network
 
   mariadb:
-    image: lscr.io/linuxserver/mariadb:latest
-    container_name: grimmory-mariadb
+    image: lscr.io/linuxserver/mariadb:11.4.5
+    container_name: booklore-mariadb
     restart: unless-stopped
     environment:
-      - DB_USER_ID=1000
-      - DB_GROUP_ID=1000
-      - MYSQL_ROOT_PASSWORD=ChangeMe_Root_2025!
-      - MYSQL_DATABASE=grimmory
-      - MYSQL_USER=grimmory
-      - MYSQL_PASSWORD=ChangeMe_Grimmory_2025!
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Rome
+      - MYSQL_ROOT_PASSWORD=ChangeMe_MariaDBRoot_2025!
+      - MYSQL_DATABASE=booklore
+      - MYSQL_USER=booklore
+      - MYSQL_PASSWORD=ChangeMe_BookLore_2025!
     volumes:
       - "${APP_DATA_DIR}/mariadb:/config"
     healthcheck:
@@ -44,8 +51,8 @@ services:
       timeout: 5s
       retries: 10
     networks:
-      - grimmory_network
+      - booklore_network
 
 networks:
-  grimmory_network:
+  booklore_network:
     driver: bridge
