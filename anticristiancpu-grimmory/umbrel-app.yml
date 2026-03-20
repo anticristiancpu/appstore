@@ -1,22 +1,23 @@
 manifestVersion: 1
 id: "anticristiancpu-grimmory"
-category: media
-name: "Grimmory"
+category: files
+name: BookLore
 version: "latest"
-tagline: "Gestore avanzato di e-book e librerie digitali."
-icon: https://www.homedock.cloud/images/app-store-icons/ogfallback/booklore_1x1.jpg
+tagline: La tua libreria di ebook self-hosted
 description: >-
-  Grimmory (il successore open-source di BookLore) è una piattaforma self-hosted 
-  completa per la gestione, la lettura e la condivisione della tua libreria digitale. 
-  Include il supporto per l'invio al Kindle, la sincronizzazione con e-reader e cartelle 
-  di auto-importazione.
-developer: "Grimmory Tools"
-website: "https://github.com/grimmory-tools/grimmory"
+  BookLore è un gestore self-hosted multi-utente per la tua libreria digitale.
+  Supporta EPUB, PDF e fumetti CBZ con download automatico di metadati e copertine
+  da Google Books, Open Library e altri. Include sincronizzazione con Kobo e KOReader,
+  cartella BookDrop per importazione automatica e supporto OPDS.
+developer: BookLore App
+website: https://github.com/booklore-app/booklore
 dependencies: []
-repo: "https://github.com/grimmory-tools/grimmory"
-support: "https://github.com/grimmory-tools/grimmory/issues"
+repo: https://github.com/booklore-app/booklore
+support: https://github.com/booklore-app/booklore/issues
 port: 6060
 gallery: []
 path: ""
 defaultUsername: ""
 defaultPassword: ""
+releaseNotes: ""
+submittedBy: ""
