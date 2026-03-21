@@ -14,8 +14,8 @@ services:
       APP_GROUP_ID: "1000"
       TZ: "Europe/Rome"
       DATABASE_URL: "jdbc:mariadb://mariadb:3306/grimmory"
-      DB_USER: "grimmory"
-      DB_PASSWORD: "grimmory_pass"
+      DATABASE_USERNAME: "grimmory"
+      DATABASE_PASSWORD: "grimmory_pass"
       DISK_TYPE: "LOCAL"
     depends_on:
       - mariadb
