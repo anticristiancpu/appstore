@@ -33,4 +33,4 @@ services:
       MYSQL_USER: "grimmory"
       MYSQL_PASSWORD: "grimmory_pass"
     volumes:
-      - ${APP_DATA_DIR}/data/db:/var/lib/mysql
+      - ${APP_DATA_DIR}/data/database:/var/lib/mysql
