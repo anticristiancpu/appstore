@@ -1,58 +1,36 @@
 version: "3.7"
 
 services:
-  booklore:
-    image: booklore/booklore:latest
-    container_name: booklore
-    restart: unless-stopped
-    depends_on:
-      mariadb:
-        condition: service_healthy
-    ports:
-      - "${APP_BOOKLORE_PORT:-6060}:6060"
+  app_proxy:
     environment:
-      - USER_ID=1000
-      - GROUP_ID=1000
-      - TZ=Europe/Rome
-      - DATABASE_URL=jdbc:mariadb://mariadb:3306/booklore
-      - DATABASE_USERNAME=booklore
-      - DATABASE_PASSWORD=ChangeMe_BookLore_2025!
-      - DISK_TYPE=LOCAL
+      APP_HOST: anticristiancpu-grimmory_web_1
+      APP_PORT: 6060
+
+  web:
+    image: ghcr.io/grimmory-tools/grimmory:latest
+    restart: on-failure
+    environment:
+      APP_USER_ID: "1000"
+      APP_GROUP_ID: "1000"
+      TZ: "Europe/Rome"
+      DATABASE_URL: "jdbc:mariadb://mariadb:3306/grimmory"
+      DB_USER: "grimmory"
+      DB_PASSWORD: "grimmory_pass"
+      DISK_TYPE: "LOCAL"
+    depends_on:
+      - mariadb
     volumes:
-      - "${APP_DATA_DIR}/data:/app/data"
-      - "${APP_DATA_DIR}/books:/books"
-      - "${APP_DATA_DIR}/bookdrop:/bookdrop"
-    healthcheck:
-      test: wget -q -O - http://localhost:6060/api/v1/healthcheck
-      interval: 60s
-      retries: 5
-      start_period: 60s
-      timeout: 10s
-    networks:
-      - booklore_network
+      - ${APP_DATA_DIR}/data/app:/app/data
+      - ${APP_DATA_DIR}/data/books:/books
+      - ${APP_DATA_DIR}/data/bookdrop:/bookdrop
 
   mariadb:
-    image: lscr.io/linuxserver/mariadb:11.4.5
-    container_name: booklore-mariadb
-    restart: unless-stopped
+    image: mariadb:10.11
+    restart: on-failure
     environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Rome
-      - MYSQL_ROOT_PASSWORD=ChangeMe_MariaDBRoot_2025!
-      - MYSQL_DATABASE=booklore
-      - MYSQL_USER=booklore
-      - MYSQL_PASSWORD=ChangeMe_BookLore_2025!
+      MYSQL_ROOT_PASSWORD: "grimmory_root"
+      MYSQL_DATABASE: "grimmory"
+      MYSQL_USER: "grimmory"
+      MYSQL_PASSWORD: "grimmory_pass"
     volumes:
-      - "${APP_DATA_DIR}/mariadb:/config"
-    healthcheck:
-      test: ["CMD", "mariadb-admin", "ping", "-h", "localhost"]
-      interval: 5s
-      timeout: 5s
-      retries: 10
-    networks:
-      - booklore_network
-
-networks:
-  booklore_network:
-    driver: bridge
+      - ${APP_DATA_DIR}/data/db:/var/lib/mysql
