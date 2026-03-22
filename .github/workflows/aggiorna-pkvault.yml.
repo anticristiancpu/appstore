@@ -1,0 +1,33 @@
+name: Auto-Update PKVault
+
+on:
+  schedule:
+    - cron: '30 2 * * *' 
+  workflow_dispatch: 
+
+jobs:
+  update-version:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Scarica il tuo repository
+        uses: actions/checkout@v4
+
+      - name: Cerca l'ultima versione di PKVault
+        run: |
+          LATEST_VERSION=$(curl -sL https://api.github.com/repos/Chnapy/PKVault/releases/latest | jq -r ".tag_name")
+          echo "L'ultima versione trovata è: $LATEST_VERSION"
+          
+          if [ "$LATEST_VERSION" != "null" ] && [ -n "$LATEST_VERSION" ]; then
+            sed -i "s/^version: .*/version: \"$LATEST_VERSION\"/" anticristiancpu-pkvault/umbrel-app.yml
+          fi
+
+      - name: Salva le modifiche (Commit)
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add anticristiancpu-pkvault/umbrel-app.yml
+          
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update PKVault alla versione più recente" && git push)
