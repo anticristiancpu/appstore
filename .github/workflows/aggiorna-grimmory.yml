@@ -1,0 +1,36 @@
+name: Auto-Update Grimmory
+
+on:
+  schedule:
+    - cron: '0 2 * * *' # Controlla ogni notte alle 2:00
+  workflow_dispatch: # Tasto per l'avvio manuale
+
+jobs:
+  update-version:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Scarica il tuo repository
+        uses: actions/checkout@v4
+
+      - name: Cerca l'ultima versione di Grimmory
+        run: |
+          # Interroga GitHub per scoprire l'ultima "Release" ufficiale di Grimmory
+          LATEST_VERSION=$(curl -sL https://api.github.com/repos/grimmory-tools/grimmory/releases/latest | jq -r ".tag_name")
+          echo "L'ultima versione trovata è: $LATEST_VERSION"
+          
+          # Se trova una versione valida, aggiorna il file umbrel-app.yml
+          if [ "$LATEST_VERSION" != "null" ] && [ -n "$LATEST_VERSION" ]; then
+            sed -i "s/^version: .*/version: \"$LATEST_VERSION\"/" anticristiancpu-grimmory/umbrel-app.yml
+          fi
+
+      - name: Salva le modifiche (Commit)
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add anticristiancpu-grimmory/umbrel-app.yml
+          
+          # Se il file è cambiato, fa il commit e salva sul tuo repo
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update Grimmory alla versione più recente" && git push)
