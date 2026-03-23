@@ -2,7 +2,7 @@ manifestVersion: 1.2.1
 id: anticristiancpu-shelfmark
 category: Media
 name: Shelfmark
-version: "1.2.0"
+version: "v1.2.1"
 tagline: "Il tuo motore di ricerca per eBook e Audiolibri"
 icon: https://github.com/calibrain/shelfmark/raw/main/src/frontend/public/logo.png
 description: >-
