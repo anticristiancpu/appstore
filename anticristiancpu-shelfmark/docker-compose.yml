@@ -15,4 +15,4 @@ services:
       - TZ=Europe/Rome
     volumes:
       - ${APP_DATA_DIR}/data/config:/config
-      - ${APP_DATA_DIR}/data/books:/books
+      - ${APP_DATA_DIR}/../anticristiancpu-grimmory/data/bookdrop:/books
