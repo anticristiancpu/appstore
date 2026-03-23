@@ -1,0 +1,19 @@
+manifestVersion: 1.1
+id: anticristiancpu-shelfmark
+category: Media
+name: Shelfmark
+version: "1.2.0"
+tagline: "Il tuo motore di ricerca per eBook e Audiolibri"
+icon: https://github.com/calibrain/shelfmark/raw/main/src/frontend/public/logo.png
+description: >-
+  Shelfmark è un'interfaccia web per cercare e scaricare libri e audiolibri da molteplici fonti in un unico posto. Supporta download diretti, Torrent, Usenet e si integra con i principali database come Hardcover e Open Library.
+developer: calibrain
+website: https://github.com/calibrain/shelfmark
+dependencies: []
+repo: https://github.com/calibrain/shelfmark
+support: https://github.com/calibrain/shelfmark/issues
+port: 8084
+gallery: []
+path: ""
+defaultUsername: ""
+defaultPassword: ""
