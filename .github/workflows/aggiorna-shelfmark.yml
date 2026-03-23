@@ -1,0 +1,33 @@
+name: Auto-Update Shelfmark
+
+on:
+  schedule:
+    - cron: '0 3 * * *' 
+  workflow_dispatch: 
+
+jobs:
+  update-version:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Scarica il tuo repository
+        uses: actions/checkout@v4
+
+      - name: Cerca l'ultima versione di Shelfmark
+        run: |
+          LATEST_VERSION=$(curl -sL https://api.github.com/repos/calibrain/shelfmark/releases/latest | jq -r ".tag_name")
+          echo "L'ultima versione trovata è: $LATEST_VERSION"
+          
+          if [ "$LATEST_VERSION" != "null" ] && [ -n "$LATEST_VERSION" ]; then
+            sed -i "s/^version: .*/version: \"$LATEST_VERSION\"/" anticristiancpu-shelfmark/umbrel-app.yml
+          fi
+
+      - name: Salva le modifiche (Commit)
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add anticristiancpu-shelfmark/umbrel-app.yml
+          
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update Shelfmark alla versione più recente" && git push)
