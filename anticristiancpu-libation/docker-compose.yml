@@ -13,6 +13,6 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Rome
-   volumes:
+    volumes:
       - ${APP_DATA_DIR}/data/config:/config
-      - ${APP_DATA_DIR}/../downloads/audiobooks:/books
+      - ${APP_DATA_DIR}/../downloads/data/audiobooks:/data
