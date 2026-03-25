@@ -1,0 +1,19 @@
+manifestVersion: 1.1
+id: anticristiancpu-libation
+category: Media
+name: Libation
+version: "1.0.0"
+tagline: "Libera e gestisci i tuoi audiolibri Audible"
+icon: https://www.epubor.com/images/uppic/libation-icon.png
+description: >-
+  Libation ti permette di scaricare, decriptare e gestire la tua intera libreria Audible. Questa versione Docker fornisce l'interfaccia desktop completa accessibile comodamente dal tuo browser web.
+developer: ceramicwhite
+website: https://github.com/rmcrackan/Libation
+dependencies: []
+repo: https://github.com/rmcrackan/Libation
+support: https://github.com/rmcrackan/Libation/issues
+port: ""
+gallery: []
+path: ""
+defaultUsername: ""
+defaultPassword: ""
