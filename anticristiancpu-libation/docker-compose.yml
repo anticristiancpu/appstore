@@ -1,0 +1,18 @@
+version: "3.7"
+
+services:
+  app_proxy:
+    environment:
+      APP_HOST: anticristiancpu-libation_web_1
+      APP_PORT: 3000
+
+  web:
+    image: ceramicwhite/libation:latest
+    restart: on-failure
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Rome
+   volumes:
+      - ${APP_DATA_DIR}/data/config:/config
+      - ${APP_DATA_DIR}/../downloads/audiobooks:/books
