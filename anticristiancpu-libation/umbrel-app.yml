@@ -12,7 +12,7 @@ website: https://github.com/rmcrackan/Libation
 dependencies: []
 repo: https://github.com/rmcrackan/Libation
 support: https://github.com/rmcrackan/Libation/issues
-port: ""
+port: 8085
 gallery: []
 path: ""
 defaultUsername: ""
