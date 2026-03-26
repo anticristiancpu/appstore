@@ -2,7 +2,7 @@ manifestVersion: 1.1
 id: anticristiancpu-libation
 category: Media
 name: Libation
-version: "1.0.3"
+version: "v13.3.2"
 tagline: "Gestisci la tua libreria Audible"
 description: "Scarica e decripta i tuoi audiolibri Audible tramite interfaccia web."
 icon: https://www.epubor.com/images/uppic/libation-icon.png
