@@ -11,7 +11,7 @@ website: https://github.com/a1ex4/ownfoil
 dependencies: []
 repo: https://github.com/a1ex4/ownfoil
 support: https://github.com/a1ex4/ownfoil/issues
-port: 8086
+port: ""
 gallery: []
 path: ""
 defaultUsername: ""
