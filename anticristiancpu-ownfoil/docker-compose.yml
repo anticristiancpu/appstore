@@ -4,13 +4,12 @@ services:
   app_proxy:
     environment:
       APP_HOST: anticristiancpu-ownfoil_web_1
-      APP_PORT: 8080
+      APP_PORT: 8465
 
   web:
     image: a1ex4/ownfoil:latest
     restart: on-failure
     environment:
-      - PORT=8080
       - PUID=1000
       - PGID=1000
     volumes:
