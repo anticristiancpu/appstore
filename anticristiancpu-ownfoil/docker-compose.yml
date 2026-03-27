@@ -1,0 +1,16 @@
+version: "3.7"
+
+services:
+  app_proxy:
+    environment:
+      APP_HOST: anticristiancpu-ownfoil_web_1
+      APP_PORT: 8080
+
+  web:
+    image: a1ex4/ownfoil:latest
+    restart: on-failure
+    environment:
+      - PORT=8080
+    volumes:
+      - ${APP_DATA_DIR}/data/config:/app/data
+      - ${APP_DATA_DIR}/../downloads/data/switch:/games
