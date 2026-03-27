@@ -4,7 +4,7 @@ category: Media
 name: Ownfoil
 version: "1.0.0"
 tagline: "Il tuo server Tinfoil personale"
-Icon: https://cdn2.steamgriddb.com/icon_thumb/69812e3f04486f27c1b6f6d2820e5c90.png
+icon: https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Nintendo_Switch_logo.svg/960px-Nintendo_Switch_logo.svg.png
 description: "Crea il tuo shop privato per Nintendo Switch. Ownfoil analizza la tua cartella dei giochi e crea un server web per servire direttamente i file NSP, NSZ, XCI e XCZ a Tinfoil."
 developer: a1ex4
 website: https://github.com/a1ex4/ownfoil
