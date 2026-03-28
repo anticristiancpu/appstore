@@ -14,4 +14,4 @@ services:
       - PGID=1000
 volumes:
       - ${APP_DATA_DIR}/data/config:/app/config
-      - /home/umbrel/umbrel/home/Downloads/switch:/games
+      - ${APP_DATA_DIR}/../../home/Downloads/switch:/games
