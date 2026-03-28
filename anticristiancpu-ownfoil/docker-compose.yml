@@ -12,6 +12,6 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-volumes:
+    volumes:
       - ${APP_DATA_DIR}/data/config:/app/config
-      - ${APP_DATA_DIR}/../../home/Downloads/switch:/games
+      - ${APP_DATA_DIR}/../downloads/data/switch:/games
