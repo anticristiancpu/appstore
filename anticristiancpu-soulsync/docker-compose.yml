@@ -6,7 +6,7 @@ services:
       APP_PORT: 8008
 
   web:
-    image: nezreka/soulsync:latest
+    image: boulderbadgedad/soulsync:latest
     restart: on-failure
     environment:
       - PUID=1000
