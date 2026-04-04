@@ -1,0 +1,19 @@
+manifestVersion: 1.1
+id: anticristiancpu-soulsync
+category: Media
+name: SoulSync
+version: "1.2.0"
+tagline: "Automated Music Discovery and Collection Manager"
+icon: https://github.com/Nezreka/SoulSync/blob/main/assets/trans.png
+description: >-
+  SoulSync automatizza la scoperta e il download della musica. Si collega a slskd, Spotify e altre fonti per organizzare la libreria e aggiornare i metadati in completa autonomia.
+developer: Nezreka
+website: https://github.com/Nezreka/SoulSync
+dependencies: []
+repo: https://github.com/Nezreka/SoulSync
+support: https://github.com/Nezreka/SoulSync/issues
+port: 8008
+gallery: []
+path: ""
+defaultUsername: ""
+defaultPassword: ""
