@@ -1,0 +1,22 @@
+version: "3.7"
+services:
+  app_proxy:
+    environment:
+      APP_HOST: anticristiancpu-soulsync_web_1
+      APP_PORT: 8008
+
+  web:
+    image: nezreka/soulsync:latest
+    restart: on-failure
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Rome
+    ports:
+      - "8888:8888"
+      - "8889:8889"
+    volumes:
+      - ${APP_DATA_DIR}/data/config:/app/config
+      - ${APP_DATA_DIR}/data/data:/app/data
+      - ${APP_DATA_DIR}/data/logs:/app/logs
+      - /home/umbrel/umbrel/home/Downloads/music/SoulSync:/app/downloads
