@@ -4,15 +4,17 @@ services:
   app_proxy:
     environment:
       APP_HOST: web
-      APP_PORT: 8008
+      APP_PORT: 8011
 
   web:
-    image: boulderbadgedad/soulsync:1.9
+    image: boulderbadgedad/soulsync:latest
     restart: on-failure
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Rome
+      - HOST=0.0.0.0
+      - PORT=8011
     volumes:
       - ${APP_DATA_DIR}/data/config:/app/config
       - soulsync_database:/app/data
