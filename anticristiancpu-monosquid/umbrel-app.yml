@@ -1,25 +1,13 @@
-manifestVersion: 1.1
-id: mono-squid
-name: Mono Squid
-tagline: Download manager per contenuti multimediali
-icon: https://raw.githubusercontent.com/anticristiancpu/appstore/main/mono-squid/icon.png
-category: Media
+id: "monosquid"
+name: "Monosquid"
 version: "1.0.0"
+description: "Web-based music search and download tool."
+developer: "TheSquid777"
+website: "https://mono.squid.wtf/"
+repo: "https://github.com/thesquid777/monosquid"
+support: "https://github.com/thesquid777/monosquid/issues"
 port: 3000
-description: >-
-  Accedi a mono.squid.wtf direttamente dal tuo server Umbrel.
-  I file scaricati verranno salvati nella cartella downloads condivisa.
-releaseNotes: >-
-  Prima release - Browser Chromium integrato
-developer: AntiChristian
-website: https://mono.squid.wtf/
-submitter: AntiChristian
-submission: https://github.com/anticristiancpu/appstore
-repo: https://github.com/anticristiancpu/appstore
-support: https://github.com/anticristiancpu/appstore/issues
+icon: "https://raw.githubusercontent.com/thesquid777/monosquid/main/public/logo192.png"
 gallery:
-  - https://raw.githubusercontent.com/anticristiancpu/appstore/main/mono-squid/screenshot1.jpg
-dependencies: []
-path: ""
-defaultUsername: ""
-defaultPassword: ""
+  - "https://raw.githubusercontent.com/thesquid777/monosquid/main/screenshots/1.png"
+submitter: "TuoNome"
