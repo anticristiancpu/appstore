@@ -1,10 +1,26 @@
-id: "monosquid"
-name: "Monosquid"
+manifestVersion: 1
+id: mono-squid
+name: Mono Squid
+tagline: Download manager per contenuti multimediali
+icon: https://mono.squid.wtf/favicon.ico
+category: Media
 version: "1.0.0"
-description: "A simple web-based music search and download tool."
-developer: "TheSquid777"
-website: "https://mono.squid.wtf/"
-repo: "https://github.com/thesquid777/monosquid"
-support: "https://github.com/thesquid777/monosquid/issues"
-port: 8080
-icon: "https://raw.githubusercontent.com/thesquid777/monosquid/main/public/logo192.png"
+port: 8095
+description: >-
+  Accedi a mono.squid.wtf direttamente dal tuo server Umbrel.
+  I file scaricati verranno salvati nella cartella condivisa
+  accessibile dal tuo media server.
+developer: TuoNome
+website: https://mono.squid.wtf/
+submitter: TuoNome
+submission: https://github.com/tuo-repo
+repo: https://github.com/tuo-repo
+support: https://github.com/tuo-repo/issues
+gallery:
+  - https://i.imgur.com/placeholder.jpg
+releaseNotes: >-
+  Prima versione
+dependencies: []
+path: ""
+defaultUsername: ""
+defaultPassword: ""
