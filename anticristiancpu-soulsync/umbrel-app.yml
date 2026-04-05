@@ -12,7 +12,7 @@ website: https://github.com/Nezreka/SoulSync
 dependencies: []
 repo: https://github.com/Nezreka/SoulSync
 support: https://github.com/Nezreka/SoulSync/issues
-port: 8008
+port: 8011
 gallery: []
 path: ""
 defaultUsername: ""
