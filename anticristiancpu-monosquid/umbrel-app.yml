@@ -1,0 +1,10 @@
+id: "monosquid"
+name: "Monosquid"
+version: "1.0.0"
+description: "A simple web-based music search and download tool."
+developer: "TheSquid777"
+website: "https://mono.squid.wtf/"
+repo: "https://github.com/thesquid777/monosquid"
+support: "https://github.com/thesquid777/monosquid/issues"
+port: 8080
+icon: "https://raw.githubusercontent.com/thesquid777/monosquid/main/public/logo192.png"
