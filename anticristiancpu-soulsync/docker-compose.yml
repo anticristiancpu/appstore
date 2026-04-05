@@ -1,25 +1,25 @@
 version: '3.7'
+
 services:
   app_proxy:
-    image: getumbrel/app-proxy:1.0.0
     environment:
-      APP_HOST: web
+      APP_HOST: anticristiancpu-soulsync_web_1
       APP_PORT: 8008
+
   web:
     image: boulderbadgedad/soulsync:latest
+    container_name: anticristiancpu-soulsync_web_1
     restart: on-failure
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Rome
-    ports:
-      - '8888:8888'
-      - '8889:8889'
     volumes:
       - ${APP_DATA_DIR}/data/config:/app/config
       - soulsync_database:/app/data
       - ${APP_DATA_DIR}/data/logs:/app/logs
       - /home/umbrel/umbrel/home/Downloads/complete:/app/downloads
       - /home/umbrel/umbrel/home/Downloads/music/SoulSync:/app/Transfer
+
 volumes:
-  soulsync_database: null
+  soulsync_database:
