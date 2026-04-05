@@ -1,26 +1,29 @@
 manifestVersion: 1
 id: mono-squid
+category: media
 name: Mono Squid
-tagline: Download manager per contenuti multimediali
-icon: https://mono.squid.wtf/favicon.ico
-category: Media
 version: "1.0.0"
-port: 8095
+tagline: Download manager per contenuti multimediali
 description: >-
   Accedi a mono.squid.wtf direttamente dal tuo server Umbrel.
-  I file scaricati verranno salvati nella cartella condivisa
-  accessibile dal tuo media server.
+  I file scaricati verranno salvati nella cartella downloads condivisa.
 developer: TuoNome
 website: https://mono.squid.wtf/
-submitter: TuoNome
-submission: https://github.com/tuo-repo
-repo: https://github.com/tuo-repo
-support: https://github.com/tuo-repo/issues
-gallery:
-  - https://i.imgur.com/placeholder.jpg
-releaseNotes: >-
-  Prima versione
 dependencies: []
+repo: https://github.com/tuo-username/tuo-repo
+support: https://github.com/tuo-username/tuo-repo/issues
+port: 3000
+gallery:
+  - 1.jpg
+  - 2.jpg
+  - 3.jpg
 path: ""
 defaultUsername: ""
 defaultPassword: ""
+torOnly: false
+permissions:
+  - STORAGE_DOWNLOADS
+releaseNotes: >-
+  Prima release
+submitter: TuoNome
+submission: https://github.com/tuo-username/tuo-repo
