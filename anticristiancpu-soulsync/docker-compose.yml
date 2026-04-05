@@ -4,7 +4,7 @@ services:
   app_proxy:
     environment:
       APP_HOST: anticristiancpu-soulsync_web_1
-      APP_PORT: 8008
+      APP_PORT: 8011
 
   web:
     image: boulderbadgedad/soulsync:latest
@@ -14,6 +14,8 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Rome
+      - HOST=0.0.0.0
+      - PORT=8011
     volumes:
       - ${APP_DATA_DIR}/data/config:/app/config
       - soulsync_database:/app/data
@@ -22,4 +24,4 @@ services:
       - /home/umbrel/umbrel/home/Downloads/music/SoulSync:/app/Transfer
 
 volumes:
-  soulsync_database:
+  soulsync_database: null
