@@ -1,0 +1,30 @@
+# --- INIZIO FILE ---
+name: Auto-Update slskd
+on:
+  schedule:
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+
+jobs:
+  update-version:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Scarica il tuo repository
+        uses: actions/checkout@v4
+
+      - name: Cerca l'ultima versione di slskd
+        run: |
+          LATEST_VERSION=$(curl -sL https://api.github.com/repos/slskd/slskd/releases/latest | jq -r ".tag_name" | sed 's/^v//')
+          if [ "$LATEST_VERSION" != "null" ] && [ -n "$LATEST_VERSION" ]; then
+            sed -i "s/^version: .*/version: \"$LATEST_VERSION\"/" anticristiancpu-slskd/umbrel-app.yml
+          fi
+
+      - name: Salva le modifiche (Commit)
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add anticristiancpu-slskd/umbrel-app.yml
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update slskd alla versione più recente" && git push)
