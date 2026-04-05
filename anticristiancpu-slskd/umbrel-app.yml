@@ -3,7 +3,7 @@ manifestVersion: 1.1
 id: anticristiancpu-slskd
 category: Media
 name: slskd
-version: "0.19.1"
+version: "0.24.5"
 tagline: "A modern web client for the Soulseek network"
 icon: https://cdn.vectorstock.com/i/500p/82/31/golden-feather-motif-vector-59048231.jpg
 description: >-
