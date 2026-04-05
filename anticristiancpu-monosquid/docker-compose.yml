@@ -19,7 +19,7 @@ services:
       - TZ=Europe/Rome
     volumes:
       - ${APP_DATA_DIR}/data/config:/app/config
-      - /home/umbrel/umbrel/home/Downloads/Monosquid:/app/downloads
+      - /home/umbrel/umbrel/home/Downloads/music/squid:/app/downloads
     networks:
       - default
 
