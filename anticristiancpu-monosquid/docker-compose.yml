@@ -3,20 +3,22 @@ version: "3.7"
 services:
   app_proxy:
     environment:
-      APP_HOST: mono-squid_web_1
-      APP_PORT: 80
+      APP_HOST: mono-squid_browser_1
+      APP_PORT: 3000
 
-  web:
-    image: nginx:alpine
+  browser:
+    image: lscr.io/linuxserver/chromium:latest
     restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - CUSTOM_USER=umbrel
+      - PASSWORD=umbrel
+      - CHROME_CLI=https://mono.squid.wtf/
     volumes:
-      - ${APP_DATA_DIR}/data/nginx.conf:/etc/nginx/nginx.conf:ro
-      - ${APP_DATA_DIR}/data/index.html:/usr/share/nginx/html/index.html:ro
-      - /home/umbrel/umbrel/home/Downloads/music/squid:/downloads
+      - ${APP_DATA_DIR}/config:/config
+      - /home/umbrel/umbrel/home/Downloads/music/squid:/config/Downloads
+    shm_size: "2gb"
     networks:
       default:
-        ipv4_address: $APP_MONO_SQUID_WEB_IP
-
-
-
-
+        ipv4_address: $APP_MONO_SQUID_BROWSER_IP
