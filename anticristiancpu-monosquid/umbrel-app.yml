@@ -7,11 +7,11 @@ tagline: Download manager per contenuti multimediali
 description: >-
   Accedi a mono.squid.wtf direttamente dal tuo server Umbrel.
   I file scaricati verranno salvati nella cartella downloads condivisa.
-developer: TuoNome
+developer: AntiChristian
 website: https://mono.squid.wtf/
 dependencies: []
-repo: https://github.com/tuo-username/tuo-repo
-support: https://github.com/tuo-username/tuo-repo/issues
+repo: https://github.com/anticristiancpu/appstore
+support: https://github.com/anticristiancpu/appstore/issues
 port: 3000
 gallery:
   - 1.jpg
@@ -20,10 +20,7 @@ gallery:
 path: ""
 defaultUsername: ""
 defaultPassword: ""
-torOnly: false
-permissions:
-  - STORAGE_DOWNLOADS
+submitter: AntiChristian
+submission: https://github.com/anticristiancpu/appstore
 releaseNotes: >-
-  Prima release
-submitter: TuoNome
-submission: https://github.com/tuo-username/tuo-repo
+  Prima release - Browser Chromium integrato per accedere a mono.squid.wtf
