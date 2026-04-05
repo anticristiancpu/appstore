@@ -2,6 +2,7 @@ version: '3.7'
 
 services:
   app_proxy:
+    image: getumbrel/app-proxy:1.0.0
     environment:
       APP_HOST: web
       APP_PORT: 8011
@@ -21,3 +22,6 @@ services:
       - ${APP_DATA_DIR}/data/logs:/app/logs
       - /home/umbrel/umbrel/home/Downloads/complete:/app/downloads
       - /home/umbrel/umbrel/home/Downloads/music/SoulSync:/app/Transfer
+
+volumes:
+  soulsync_database: null
