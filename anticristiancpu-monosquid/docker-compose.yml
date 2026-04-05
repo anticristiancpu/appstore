@@ -12,8 +12,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - CUSTOM_USER=umbrel
-      - PASSWORD=umbrel
+      - TZ=Europe/Rome
       - CHROME_CLI=https://mono.squid.wtf/
     volumes:
       - ${APP_DATA_DIR}/config:/config
