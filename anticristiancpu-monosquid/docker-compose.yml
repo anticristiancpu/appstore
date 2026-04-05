@@ -1,28 +1,22 @@
-version: '3.7'
+version: "3.7"
 
 services:
   app_proxy:
-    image: getumbrel/app-proxy:1.0.0
     environment:
-      APP_HOST: monosquid_web
-      APP_PORT: 8080
-    networks:
-      - default
+      APP_HOST: mono-squid_web_1
+      APP_PORT: 80
 
-  monosquid_web:
-    image: ghcr.io/thesquid777/monosquid:latest
-    container_name: monosquid_web
-    restart: on-failure
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Rome
+  web:
+    image: nginx:alpine
+    restart: unless-stopped
     volumes:
-      - ${APP_DATA_DIR}/data/config:/app/config
-      - /home/umbrel/umbrel/home/Downloads/music/squid:/app/downloads
+      - ${APP_DATA_DIR}/data/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ${APP_DATA_DIR}/data/index.html:/usr/share/nginx/html/index.html:ro
+      - /home/umbrel/umbrel/home/Downloads/music/squid:/downloads
     networks:
-      - default
+      default:
+        ipv4_address: $APP_MONO_SQUID_WEB_IP
 
-networks:
-  default:
-    name: monosquid_network
+
+
+
