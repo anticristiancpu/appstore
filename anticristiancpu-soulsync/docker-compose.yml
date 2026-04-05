@@ -17,6 +17,10 @@ services:
       - "8889:8889"
     volumes:
       - ${APP_DATA_DIR}/data/config:/app/config
-      - ${APP_DATA_DIR}/data/data:/app/data
+      - soulsync_database:/app/data
       - ${APP_DATA_DIR}/data/logs:/app/logs
-      - /home/umbrel/umbrel/home/Downloads/music/SoulSync:/app/downloads
+      - /home/umbrel/umbrel/home/Downloads/complete:/app/downloads
+      - /home/umbrel/umbrel/external/CRISTIAN-HDD:/app/Transfer
+
+volumes:
+  soulsync_database:
