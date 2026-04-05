@@ -1,23 +1,28 @@
-version: "3.7"
+version: '3.7'
 
 services:
   app_proxy:
+    image: getumbrel/app-proxy:1.0.0
     environment:
-      APP_HOST: mono-squid_browser_1
+      APP_HOST: monosquid_web
       APP_PORT: 3000
+    networks:
+      - default
 
-  browser:
-    image: lscr.io/linuxserver/chromium:latest
-    restart: unless-stopped
+  monosquid_web:
+    image: ghcr.io/thesquid777/monosquid:latest
+    container_name: monosquid_web
+    restart: on-failure
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Rome
-      - CHROME_CLI=https://mono.squid.wtf/
     volumes:
-      - ${APP_DATA_DIR}/config:/config
+      - ${APP_DATA_DIR}/data/config:/app/config
       - /home/umbrel/umbrel/home/Downloads/music/squid:/config/Downloads
-    shm_size: "2gb"
     networks:
-      default:
-        ipv4_address: $APP_MONO_SQUID_BROWSER_IP
+      - default
+
+networks:
+  default:
+    name: monosquid_network
