@@ -2,7 +2,7 @@ manifestVersion: 1.1
 id: anticristiancpu-soulsync
 category: Media
 name: SoulSync
-version: "1.2.0"
+version: "2.2"
 tagline: "Automated Music Discovery and Collection Manager"
 icon: https://github.com/Nezreka/SoulSync/blob/main/assets/trans.png?raw=true
 description: >-
