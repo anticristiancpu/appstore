@@ -2,7 +2,7 @@ manifestVersion: 1
 id: anticristiancpu-pkvault
 category: utilities
 name: PKVault
-version: "v1.7.6"
+version: "v1.7.7"
 tagline: Gestione centralizzata dei box e dei salvataggi Pokémon.
 icon: https://github.com/Chnapy/PKVault/raw/main/frontend/public/logo.svg
 description: >-
