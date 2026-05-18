@@ -29,6 +29,7 @@ services:
   nginx:
     image: ghcr.io/jbenamy/pinakes-docker-nginx:latest
     restart: on-failure
+    # NESSUNA mappatura ports: — il proxy di Umbrel gestisce tutto
     volumes:
       - app-code:/var/www/pinakes:ro
       - ${APP_DATA_DIR}/data/uploads:/var/www/pinakes/public/uploads:ro
