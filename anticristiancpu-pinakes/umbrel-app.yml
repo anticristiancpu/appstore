@@ -1,0 +1,23 @@
+manifestVersion: 1
+id: anticristiancpu-pinakes
+category: utilities
+name: Pinakes
+version: "0.5.0"
+tagline: Sistema completo di gestione biblioteca self-hosted
+icon: https://raw.githubusercontent.com/fabiodalez-dev/Pinakes/main/public/assets/brand/social.jpg
+description: >-
+  Pinakes è un sistema integrato di gestione bibliotecaria (ILS) open-source,
+  pensato per scuole, comuni e collezioni private. Offre catalogazione rapida
+  tramite ISBN, OPAC pubblico multilingue, prestiti, prenotazioni, notifiche
+  automatiche via email e un sistema di plugin estensibile. Supporta i protocolli
+  Z39.50/SRU per l'interoperabilità con altri cataloghi bibliotecari.
+developer: fabiodalez-dev
+website: https://fabiodalez-dev.github.io/Pinakes/
+dependencies: []
+repo: https://github.com/fabiodalez-dev/Pinakes
+support: https://github.com/fabiodalez-dev/Pinakes/issues
+port: 8080
+gallery: []
+path: ""
+defaultUsername: ""
+defaultPassword: ""
