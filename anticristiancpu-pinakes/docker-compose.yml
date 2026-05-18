@@ -6,7 +6,7 @@ services:
       APP_HOST: anticristiancpu-pinakes_nginx_1
       APP_PORT: 80
 
-  web:
+  pinakes:
     image: ghcr.io/jbenamy/pinakes-docker:latest
     restart: on-failure
     environment:
@@ -29,12 +29,11 @@ services:
   nginx:
     image: ghcr.io/jbenamy/pinakes-docker-nginx:latest
     restart: on-failure
-    # NESSUNA mappatura ports: — il proxy di Umbrel gestisce tutto
     volumes:
       - app-code:/var/www/pinakes:ro
       - ${APP_DATA_DIR}/data/uploads:/var/www/pinakes/public/uploads:ro
     depends_on:
-      - web
+      - pinakes
 
   db:
     image: mariadb:11
