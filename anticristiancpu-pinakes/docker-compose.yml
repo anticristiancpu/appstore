@@ -25,6 +25,12 @@ services:
     depends_on:
       db:
         condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "php-fpm -t || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 15s
 
   nginx:
     image: ghcr.io/jbenamy/pinakes-docker-nginx:latest
@@ -33,7 +39,8 @@ services:
       - app-code:/var/www/pinakes:ro
       - ${APP_DATA_DIR}/data/uploads:/var/www/pinakes/public/uploads:ro
     depends_on:
-      - pinakes
+      pinakes:
+        condition: service_healthy
 
   db:
     image: mariadb:11
