@@ -1,0 +1,40 @@
+name: Update Pinakes
+
+on:
+  schedule:
+    - cron: "0 8 * * *"
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check latest Pinakes release
+        id: check
+        run: |
+          LATEST=$(curl -s https://api.github.com/repos/fabiodalez-dev/Pinakes/releases/latest | jq -r .tag_name | sed 's/^v//')
+          CURRENT=$(grep '^version:' anticristiancpu-pinakes/umbrel-app.yml | sed 's/version: "\(.*\)"/\1/')
+          echo "latest=$LATEST" >> $GITHUB_OUTPUT
+          echo "current=$CURRENT" >> $GITHUB_OUTPUT
+          echo "Latest: $LATEST | Current: $CURRENT"
+
+      - name: Update umbrel-app.yml if version changed
+        if: steps.check.outputs.latest != steps.check.outputs.current
+        run: |
+          VERSION="${{ steps.check.outputs.latest }}"
+          sed -i "s/^version: \".*\"/version: \"$VERSION\"/" anticristiancpu-pinakes/umbrel-app.yml
+
+      - name: Commit and push update
+        if: steps.check.outputs.latest != steps.check.outputs.current
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add anticristiancpu-pinakes/umbrel-app.yml
+          git commit -m "chore: update Pinakes to v${{ steps.check.outputs.latest }}"
+          git push
