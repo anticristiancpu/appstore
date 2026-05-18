@@ -1,0 +1,23 @@
+manifestVersion: 1
+id: anticristiancpu-libation
+category: media
+name: Libation
+version: "13.3.4"
+tagline: Scarica e gestisci la tua libreria Audible con interfaccia grafica.
+icon: https://raw.githubusercontent.com/rmcrackan/Libation/master/Source/LoadByOS/LinuxConfigApp/libation_glass.svg
+description: >-
+  Libation è un'applicazione gratuita e open source per scaricare i tuoi audiolibri Audible
+  direttamente sul tuo server, rimuovendo il DRM in modo da possederli davvero.
+  Questa versione include l'interfaccia grafica completa accessibile dal browser tramite KasmVNC:
+  puoi aggiungere account Audible, importare la tua libreria, scaricare libri e PDF allegati,
+  organizzarli con tag e usare il potente motore di ricerca — tutto senza uscire da Umbrel.
+developer: rmcrackan / ceramicwhite
+website: https://getlibation.com
+dependencies: []
+repo: https://github.com/rmcrackan/Libation
+support: https://github.com/rmcrackan/Libation/issues
+port: 3000
+gallery: []
+path: ""
+defaultUsername: ""
+defaultPassword: ""
