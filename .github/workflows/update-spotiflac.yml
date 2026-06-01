@@ -1,0 +1,39 @@
+name: Update SpotiFLAC
+
+on:
+  schedule:
+    - cron: "0 8 * * *"
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check latest SpotiFLAC version
+        id: version
+        run: |
+          LATEST=$(curl -s https://api.github.com/repos/spotbye/SpotiFLAC/releases/latest | jq -r '.tag_name' | sed 's/^v//')
+          CURRENT=$(grep '^version:' anticristiancpu-spotiflac/umbrel-app.yml | sed 's/version: *"//' | sed 's/"//')
+          echo "latest=$LATEST" >> $GITHUB_OUTPUT
+          echo "current=$CURRENT" >> $GITHUB_OUTPUT
+          echo "Latest: $LATEST | Current: $CURRENT"
+
+      - name: Update version if changed
+        if: steps.version.outputs.latest != steps.version.outputs.current
+        run: |
+          sed -i "s/^version: \".*\"/version: \"${{ steps.version.outputs.latest }}\"/" anticristiancpu-spotiflac/umbrel-app.yml
+
+      - name: Commit update
+        if: steps.version.outputs.latest != steps.version.outputs.current
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add anticristiancpu-spotiflac/umbrel-app.yml
+          git commit -m "chore: update SpotiFLAC to ${{ steps.version.outputs.latest }}"
+          git push
