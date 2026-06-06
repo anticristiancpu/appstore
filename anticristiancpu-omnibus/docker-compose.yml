@@ -1,0 +1,31 @@
+version: "3.7"
+
+services:
+  app_proxy:
+    environment:
+      APP_HOST: anticristiancpu-omnibus_web_1
+      APP_PORT: 3000
+
+  web:
+    image: ghcr.io/hankscafe/omnibus:latest
+    restart: on-failure
+    depends_on:
+      - redis
+    environment:
+      - TZ=Europe/Rome
+      - NEXTAUTH_URL=http://umbrel.local:3000
+      - NEXTAUTH_SECRET=changeme_generate_a_random_32char_string
+      - OMNIBUS_REDIS_URL=redis://anticristiancpu-omnibus_redis_1:6379/0
+      - DATABASE_URL=file:/config/omnibus.db
+      - OMNIBUS_CACHE_DIR=/config/cache
+      - OMNIBUS_LOGS_DIR=/config/logs
+      - OMNIBUS_BACKUPS_DIR=/config/backups
+      - OMNIBUS_WATCHED_DIR=/data/watched
+      - OMNIBUS_AWAITING_MATCH_DIR=/data/unmatched
+    volumes:
+      - ${APP_DATA_DIR}/config:/config
+      - ${APP_DATA_DIR}/data:/data
+
+  redis:
+    image: redis:alpine
+    restart: on-failure
