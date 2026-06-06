@@ -1,0 +1,43 @@
+name: Update Omnibus
+
+on:
+  schedule:
+    - cron: "0 8 * * *"
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check latest Omnibus release
+        id: get_version
+        run: |
+          LATEST=$(curl -s https://api.github.com/repos/hankscafe/omnibus/releases/latest | jq -r '.tag_name')
+          echo "latest=$LATEST" >> $GITHUB_OUTPUT
+
+      - name: Read current version
+        id: current_version
+        run: |
+          CURRENT=$(grep '^version:' anticristiancpu-omnibus/umbrel-app.yml | sed 's/version: *"//' | sed 's/"//')
+          echo "current=$CURRENT" >> $GITHUB_OUTPUT
+
+      - name: Update version if changed
+        if: steps.get_version.outputs.latest != steps.current_version.outputs.current
+        run: |
+          NEW_VERSION="${{ steps.get_version.outputs.latest }}"
+          sed -i "s/^version: .*/version: \"${NEW_VERSION}\"/" anticristiancpu-omnibus/umbrel-app.yml
+
+      - name: Commit and push update
+        if: steps.get_version.outputs.latest != steps.current_version.outputs.current
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add anticristiancpu-omnibus/umbrel-app.yml
+          git commit -m "chore: update Omnibus to ${{ steps.get_version.outputs.latest }}"
+          git push
