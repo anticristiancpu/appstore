@@ -1,0 +1,25 @@
+manifestVersion: 1
+id: anticristiancpu-omnibus
+category: media
+name: Omnibus
+version: "v1.0.9-beta.076"
+tagline: Gestisci fumetti e manga con download automatici e lettore web
+icon: https://raw.githubusercontent.com/hankscafe/omnibus/main/public/icon.png
+description: >-
+  Omnibus è l'app self-hosted tutto-in-uno per appassionati di fumetti e manga.
+  Permette di scoprire nuove uscite tramite ComicVine, richiedere numeri mancanti,
+  inviarli automaticamente ai client di download (qBittorrent, SABnzbd, ecc.) e
+  leggerli direttamente dal browser con il lettore integrato. Supporta i formati
+  .cbz, .cbr ed .epub con modalità di lettura LTR, RTL (manga) e scorrimento
+  verticale per webtoon. Multi-utente, con SSO, 2FA e tracciamento dei progressi
+  di lettura indipendente per ogni account.
+developer: hankscafe
+website: https://github.com/hankscafe/omnibus
+dependencies: []
+repo: https://github.com/hankscafe/omnibus
+support: https://github.com/hankscafe/omnibus/issues
+port: 3000
+gallery: []
+path: ""
+defaultUsername: ""
+defaultPassword: ""
