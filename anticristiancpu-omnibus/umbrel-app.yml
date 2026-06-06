@@ -4,7 +4,7 @@ category: media
 name: Omnibus
 version: "v1.0.9-beta.076"
 tagline: Gestisci fumetti e manga con download automatici e lettore web
-icon: https://raw.githubusercontent.com/hankscafe/omnibus/main/public/icon.png
+icon: https://github.com/hankscafe/omnibus/raw/main/docs/images/banner.png?raw=true
 description: >-
   Omnibus è l'app self-hosted tutto-in-uno per appassionati di fumetti e manga.
   Permette di scoprire nuove uscite tramite ComicVine, richiedere numeri mancanti,
