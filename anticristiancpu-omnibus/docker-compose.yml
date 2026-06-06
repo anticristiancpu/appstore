@@ -10,12 +10,12 @@ services:
     image: hankscafe/omnibus:latest
     restart: on-failure
     depends_on:
-      - redis
+      - omnibus-redis
     environment:
       - TZ=Europe/Rome
       - NEXTAUTH_URL=http://umbrel.local:3000
       - NEXTAUTH_SECRET=changeme_generate_a_random_32char_string
-      - OMNIBUS_REDIS_URL=redis://anticristiancpu-omnibus_redis_1:6379/0
+      - OMNIBUS_REDIS_URL=redis://anticristiancpu-omnibus_omnibus-redis_1:6379/0
       - DATABASE_URL=file:/config/omnibus.db
       - OMNIBUS_CACHE_DIR=/config/cache
       - OMNIBUS_LOGS_DIR=/config/logs
@@ -26,6 +26,6 @@ services:
       - ${APP_DATA_DIR}/config:/config
       - ${APP_DATA_DIR}/data:/data
 
-  redis:
+  omnibus-redis:
     image: redis:alpine
     restart: on-failure
