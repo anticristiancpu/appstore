@@ -7,7 +7,7 @@ services:
       APP_PORT: 3000
 
   web:
-    image: ghcr.io/hankscafe/omnibus:latest
+    image: hankscafe/omnibus:latest
     restart: on-failure
     depends_on:
       - redis
