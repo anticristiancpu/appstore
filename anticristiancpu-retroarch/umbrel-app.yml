@@ -16,7 +16,7 @@ website: https://www.retroarch.com
 dependencies: []
 repo: https://github.com/linuxserver/docker-retroarch
 support: https://github.com/linuxserver/docker-retroarch/issues
-port: 3000
+port: 3010
 gallery: []
 path: ""
 defaultUsername: ""
