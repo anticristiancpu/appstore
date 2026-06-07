@@ -15,6 +15,3 @@ services:
       - TZ=Europe/Rome
     volumes:
       - ${APP_DATA_DIR}/config:/config
-    shm_size: "1gb"
-    ports:
-      - "3001:3001"
