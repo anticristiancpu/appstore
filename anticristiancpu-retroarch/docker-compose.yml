@@ -1,0 +1,20 @@
+version: "3.7"
+
+services:
+  app_proxy:
+    environment:
+      APP_HOST: anticristiancpu-retroarch_web_1
+      APP_PORT: 3000
+
+  web:
+    image: lscr.io/linuxserver/retroarch:latest
+    restart: on-failure
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Rome
+    volumes:
+      - ${APP_DATA_DIR}/config:/config
+    shm_size: "1gb"
+    ports:
+      - "3001:3001"
