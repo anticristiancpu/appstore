@@ -10,8 +10,8 @@ services:
     image: lscr.io/linuxserver/retroarch:latest
     restart: on-failure
     environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Rome
+      PUID: "1000"
+      PGID: "1000"
+      TZ: "Europe/Rome"
     volumes:
       - ${APP_DATA_DIR}/config:/config
