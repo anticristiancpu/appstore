@@ -1,0 +1,23 @@
+manifestVersion: 1
+id: anticristiancpu-retroarch
+category: media
+name: RetroArch
+version: "1.21.0ppa1-1ubuntu24.04.1-ls47"
+tagline: Emulatore retro gaming accessibile dal browser
+icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/retroarch-logo.png
+description: >-
+  RetroArch è un frontend per emulatori, motori di gioco e lettori multimediali.
+  Permette di giocare a titoli classici su una vasta gamma di sistemi attraverso
+  un'interfaccia grafica elegante. Accessibile direttamente dal browser tramite
+  streaming desktop KasmVNC. Supporta NES, SNES, PS1, N64, PSP e molti altri.
+  Carica le tue ROM nella cartella /config e inizia a giocare.
+developer: LinuxServer.io / Libretro
+website: https://www.retroarch.com
+dependencies: []
+repo: https://github.com/linuxserver/docker-retroarch
+support: https://github.com/linuxserver/docker-retroarch/issues
+port: 3000
+gallery: []
+path: ""
+defaultUsername: ""
+defaultPassword: ""
