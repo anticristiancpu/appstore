@@ -2,7 +2,7 @@ manifestVersion: 1
 id: anticristiancpu-pinakes
 category: utilities
 name: Pinakes
-version: "0.7.20.1"
+version: "0.7.20.2"
 tagline: Sistema completo di gestione biblioteca self-hosted
 icon: https://raw.githubusercontent.com/fabiodalez-dev/Pinakes/main/public/assets/brand/social.jpg
 description: >-
