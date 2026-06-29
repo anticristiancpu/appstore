@@ -2,7 +2,7 @@ manifestVersion: 1
 id: anticristiancpu-omnibus
 category: media
 name: Omnibus
-version: "v1.1.0-beta.069"
+version: "v1.1.0-beta.072"
 tagline: Gestisci fumetti e manga con download automatici e lettore web
 icon: https://github.com/hankscafe/omnibus/raw/main/docs/images/banner.png?raw=true
 description: >-
