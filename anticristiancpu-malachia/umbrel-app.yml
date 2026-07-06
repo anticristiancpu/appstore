@@ -2,7 +2,7 @@ manifestVersion: 1.2.1
 id: anticristiancpu-malachia
 category: Media
 name: Malachia
-version: "v1.0.1"
+version: "v1.0.2"
 tagline: "Bibliotheca privata — il catalogo della tua libreria personale"
 icon: https://raw.githubusercontent.com/anticristiancpu/Malachia/HEAD/icon.svg
 description: >-
