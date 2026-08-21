@@ -23,10 +23,24 @@ jobs:
           # I tag delle immagini su GHCR non hanno la "v" iniziale (es. 2.6.0)
           LATEST_VERSION="${LATEST_TAG#v}"
 
-          if [ "$LATEST_TAG" != "null" ] && [ -n "$LATEST_VERSION" ]; then
-            sed -i "s/^version: .*/version: \"$LATEST_VERSION\"/" anticristiancpu-bookorbit/umbrel-app.yml
-            sed -i "s|image: ghcr.io/bookorbit/bookorbit:.*|image: ghcr.io/bookorbit/bookorbit:$LATEST_VERSION|" anticristiancpu-bookorbit/docker-compose.yml
+          if [ "$LATEST_TAG" = "null" ] || [ -z "$LATEST_VERSION" ]; then
+            echo "Nessuna release valida trovata, non faccio nulla."
+            exit 0
           fi
+
+          # La versione attualmente in uso si legge dal tag dell'immagine. Se
+          # combacia non si tocca niente: così un suffisso di packaging nel
+          # manifest (es. 2.6.0-1) non viene azzerato a ogni esecuzione.
+          CURRENT_VERSION=$(grep -oE 'ghcr\.io/bookorbit/bookorbit:[^"[:space:]]+' anticristiancpu-bookorbit/docker-compose.yml | head -1 | cut -d: -f2)
+          echo "Versione attualmente nello store: $CURRENT_VERSION"
+
+          if [ "$CURRENT_VERSION" = "$LATEST_VERSION" ]; then
+            echo "Già aggiornato a $LATEST_VERSION."
+            exit 0
+          fi
+
+          sed -i "s/^version: .*/version: \"$LATEST_VERSION\"/" anticristiancpu-bookorbit/umbrel-app.yml
+          sed -i "s|image: ghcr.io/bookorbit/bookorbit:.*|image: ghcr.io/bookorbit/bookorbit:$LATEST_VERSION|" anticristiancpu-bookorbit/docker-compose.yml
 
       - name: Salva le modifiche (Commit)
         run: |

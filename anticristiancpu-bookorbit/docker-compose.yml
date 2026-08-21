@@ -20,7 +20,10 @@ services:
       TZ: "Europe/Rome"
       PUID: "1000"
       PGID: "1000"
-      POSTGRES_HOST: postgres
+      # Nome completo del container, non "postgres": su umbrelOS tutte le app
+      # condividono la stessa rete Docker, quindi un nome di servizio generico
+      # può essere risolto verso il database di un'altra app.
+      POSTGRES_HOST: anticristiancpu-bookorbit_postgres_1
       POSTGRES_PORT: "5432"
       POSTGRES_USER: bookorbit
       POSTGRES_PASSWORD: ${APP_BOOKORBIT_DB_PASSWORD}
