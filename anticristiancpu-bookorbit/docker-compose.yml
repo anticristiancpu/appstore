@@ -1,0 +1,58 @@
+version: "3.7"
+
+services:
+  app_proxy:
+    environment:
+      APP_HOST: anticristiancpu-bookorbit_web_1
+      APP_PORT: 3000
+
+  web:
+    image: ghcr.io/bookorbit/bookorbit:2.6.0
+    restart: on-failure
+    init: true
+    stop_grace_period: 30s
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+      PORT: "3000"
+      TZ: "Europe/Rome"
+      PUID: "1000"
+      PGID: "1000"
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: "5432"
+      POSTGRES_USER: bookorbit
+      POSTGRES_PASSWORD: ${APP_BOOKORBIT_DB_PASSWORD}
+      POSTGRES_DB: bookorbit
+      JWT_SECRET: ${APP_BOOKORBIT_JWT_SECRET}
+      # Token della procedura guidata iniziale: è la password deterministica
+      # che umbrelOS mostra nella scheda dell'app.
+      SETUP_BOOTSTRAP_TOKEN: ${APP_PASSWORD}
+      APP_URL: http://${DEVICE_DOMAIN_NAME}:${APP_BOOKORBIT_PORT}
+      # Il selettore delle cartelle parte da /books invece che dalla root.
+      LIBRARY_BROWSE_ROOT: /books
+      NODE_MAX_OLD_SPACE_SIZE: "2048"
+    volumes:
+      - ${APP_DATA_DIR}/data/app:/data
+      # Libreria: per usare i libri di Grimmory sostituire questa riga con
+      # - ${APP_DATA_DIR}/../anticristiancpu-grimmory/data/books:/books
+      - ${APP_DATA_DIR}/data/books:/books
+
+  postgres:
+    image: pgvector/pgvector:pg18
+    restart: on-failure
+    stop_grace_period: 1m
+    environment:
+      POSTGRES_USER: bookorbit
+      POSTGRES_PASSWORD: ${APP_BOOKORBIT_DB_PASSWORD}
+      POSTGRES_DB: bookorbit
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - ${APP_DATA_DIR}/data/postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U bookorbit -d bookorbit"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s

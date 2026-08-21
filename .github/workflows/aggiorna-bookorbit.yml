@@ -1,0 +1,37 @@
+name: Auto-Update BookOrbit
+
+on:
+  schedule:
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+
+jobs:
+  update-version:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Scarica il tuo repository
+        uses: actions/checkout@v4
+
+      - name: Cerca l'ultima versione di BookOrbit
+        run: |
+          LATEST_TAG=$(curl -sL https://api.github.com/repos/bookorbit/bookorbit/releases/latest | jq -r ".tag_name")
+          echo "L'ultima release trovata è: $LATEST_TAG"
+
+          # I tag delle immagini su GHCR non hanno la "v" iniziale (es. 2.6.0)
+          LATEST_VERSION="${LATEST_TAG#v}"
+
+          if [ "$LATEST_TAG" != "null" ] && [ -n "$LATEST_VERSION" ]; then
+            sed -i "s/^version: .*/version: \"$LATEST_VERSION\"/" anticristiancpu-bookorbit/umbrel-app.yml
+            sed -i "s|image: ghcr.io/bookorbit/bookorbit:.*|image: ghcr.io/bookorbit/bookorbit:$LATEST_VERSION|" anticristiancpu-bookorbit/docker-compose.yml
+          fi
+
+      - name: Salva le modifiche (Commit)
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add anticristiancpu-bookorbit/umbrel-app.yml anticristiancpu-bookorbit/docker-compose.yml
+
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update BookOrbit alla versione più recente" && git push)

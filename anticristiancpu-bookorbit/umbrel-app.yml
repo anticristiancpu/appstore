@@ -1,0 +1,40 @@
+manifestVersion: 1.2.1
+id: anticristiancpu-bookorbit
+category: media
+name: BookOrbit
+version: "2.6.0"
+tagline: "Il tuo spazio di lettura: ebook, PDF, fumetti e audiolibri"
+icon: https://raw.githubusercontent.com/bookorbit/bookorbit/main/client/public/pwa-512x512.png
+description: >-
+  BookOrbit è una biblioteca self-hosted con lettore integrato per ebook
+  (EPUB, KEPUB, MOBI, AZW3, FB2), PDF, fumetti (CBZ, CBR, CB7) e audiolibri
+  (M4B, MP3, FLAC, OPUS).
+
+
+  Sincronizzazione a tre vie tra Kobo, KOReader e il lettore web: progressi,
+  evidenziazioni e stato di lettura si spostano da un dispositivo all'altro.
+  Include 14 provider di metadati (Google Books, Open Library, Goodreads,
+  Hardcover, Audible, ComicVine e altri), librerie multiple con regole di
+  scansione, statistiche di lettura con obiettivi e achievement, catalogo OPDS,
+  Send-to-Kindle, utenti multipli con OIDC/SSO e sincronizzazione verso
+  Hardcover, Readwise e StoryGraph.
+
+
+  ⚠️ Al primo avvio la procedura guidata chiede un "setup token": è la password
+  mostrata da umbrelOS in questa scheda (pulsante di visualizzazione della
+  password). Usala per creare l'account amministratore.
+
+
+  📚 I libri vanno messi nella cartella dell'app
+  (app-data/anticristiancpu-bookorbit/data/books) e poi importati creando una
+  libreria dall'interfaccia.
+developer: BookOrbit
+website: https://bookorbit.app
+dependencies: []
+repo: https://github.com/bookorbit/bookorbit
+support: https://github.com/bookorbit/bookorbit/issues
+port: 8095
+gallery: []
+path: ""
+deterministicPassword: true
+defaultUsername: ""
