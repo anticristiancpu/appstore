@@ -14,6 +14,8 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+      init-permissions:
+        condition: service_completed_successfully
     environment:
       NODE_ENV: production
       PORT: "3000"
@@ -40,6 +42,18 @@ services:
       - ${APP_DATA_DIR}/data/app:/data
       # Libreria: per usare i libri di Grimmory sostituire questa riga con
       # - ${APP_DATA_DIR}/../anticristiancpu-grimmory/data/books:/books
+      - ${APP_DATA_DIR}/data/books:/books
+
+  # Docker crea la sorgente di un bind mount mancante come root:root, mentre
+  # BookOrbit gira come 1000:1000 e sistema da solo solo /data. Senza questo
+  # passaggio la cartella dei libri resta di root e lo spostamento dei file dal
+  # Book Dock fallisce con "permission denied".
+  init-permissions:
+    image: alpine:3.22
+    restart: "no"
+    user: "0:0"
+    command: sh -c "chown 1000:1000 /books && chmod u+rwx /books"
+    volumes:
       - ${APP_DATA_DIR}/data/books:/books
 
   postgres:
