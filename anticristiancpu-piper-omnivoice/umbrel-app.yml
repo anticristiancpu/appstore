@@ -1,0 +1,60 @@
+manifestVersion: 1.1
+id: anticristiancpu-piper-omnivoice
+category: automation
+name: Piper OmniVoice (clonazione)
+version: "2.4.2-omnivoice"
+tagline: Sintesi vocale con clonazione della voce da un campione
+icon: https://brands.home-assistant.io/_/tts/icon.png
+description: >-
+  Variante di Wyoming Piper con il backend OmniVoice: invece di usare una voce
+  pre-addestrata, clona una voce partendo da un breve campione audio, oppure la
+  genera da una descrizione testuale (voice design).
+
+
+  Pensata per affiancare l'app Wyoming Piper, non per sostituirla: Piper resta il
+  motore veloce per le risposte di Assist, questa la usi dove la voce conta piu'
+  della latenza (annunci, notifiche, automazioni).
+
+
+  ATTENZIONE alle risorse: l'immagine include torch e transformers, e al primo
+  avvio scarica il modello da HuggingFace (diversi GB). Il download finisce nel
+  volume dati dell'app, quindi avviene una sola volta. Su CPU senza GPU la
+  sintesi richiede alcuni secondi per frase, contro i millisecondi di Piper.
+
+
+  Come preparare una voce clonata, via SSH nella cartella dati dell'app:
+
+  1. Crea data/ref/it/nome_voce/
+
+  2. Metti dentro ref.wav (campione pulito di pochi secondi) e ref.txt con la
+     trascrizione esatta di quel campione
+
+  3. Riavvia l'app: la voce compare nel menu TTS di Home Assistant
+
+
+  In alternativa, al posto di ref.wav/ref.txt puoi mettere un instruct.txt che
+  descrive a parole la voce desiderata (es. "voce maschile calma, tono basso,
+  parlata lenta") e il modello la genera.
+
+
+  Come collegarla a Home Assistant:
+
+  1. Impostazioni -> Dispositivi e servizi -> Aggiungi integrazione -> Wyoming Protocol
+
+  2. Host: localhost   Porta: 10202
+
+
+  Clonare la voce di una persona reale senza il suo consenso puo' violarne i
+  diritti: usala sulla tua voce, su voci di fantasia o con autorizzazione.
+developer: Rhasspy / Michael Hansen
+website: https://github.com/rhasspy/wyoming-piper
+dependencies: []
+repo: https://github.com/rhasspy/wyoming-piper
+support: https://github.com/rhasspy/wyoming-piper/issues
+releaseNotes: >-
+  Prima release: backend OmniVoice per clonazione vocale e voice design.
+port: 10203
+gallery: []
+path: ""
+defaultUsername: ""
+defaultPassword: ""
