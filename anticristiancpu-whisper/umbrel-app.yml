@@ -1,0 +1,46 @@
+manifestVersion: 1.1
+id: anticristiancpu-whisper
+category: automation
+name: Wyoming Whisper (STT)
+version: "3.6.0"
+tagline: Riconoscimento vocale locale per Home Assistant
+icon: https://brands.home-assistant.io/_/whisper/icon.png
+description: >-
+  Server Wyoming per faster-whisper: converte la voce in testo (Speech-to-Text)
+  interamente in locale, senza cloud.
+
+
+  Serve a dare l'"orecchio" all'assistente vocale Assist di Home Assistant nella
+  versione container (senza Supervisor), dove gli Add-on non sono disponibili.
+
+
+  ATTENZIONE: e' un servizio headless, parla il protocollo Wyoming su TCP e NON
+  ha un'interfaccia web. La tile in umbrelOS non aprira' nessuna pagina: e' normale.
+
+
+  Come collegarlo a Home Assistant:
+
+  1. Impostazioni -> Dispositivi e servizi -> Aggiungi integrazione -> Wyoming Protocol
+
+  2. Host: localhost   Porta: 10300
+
+  3. Impostazioni -> Assistenti vocali -> scegli "faster-whisper" come Speech-to-text
+
+
+  Al primo avvio scarica il modello (~500 MB per small-int8): puo' richiedere
+  qualche minuto prima di rispondere.
+
+
+  Modello predefinito: small-int8, lingua italiana. Per cambiarlo modifica il
+  parametro --model nel docker-compose.yml (tiny-int8, base-int8, small-int8,
+  medium-int8, large-v3).
+developer: Rhasspy / Michael Hansen
+website: https://github.com/rhasspy/wyoming-faster-whisper
+dependencies: []
+repo: https://github.com/rhasspy/wyoming-addons
+support: https://github.com/rhasspy/wyoming-addons/issues
+port: 10301
+gallery: []
+path: ""
+defaultUsername: ""
+defaultPassword: ""

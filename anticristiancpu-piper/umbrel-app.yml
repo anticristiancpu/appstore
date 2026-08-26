@@ -1,0 +1,43 @@
+manifestVersion: 1.1
+id: anticristiancpu-piper
+category: automation
+name: Wyoming Piper (TTS)
+version: "2.4.2"
+tagline: Sintesi vocale italiana locale per Home Assistant
+icon: https://brands.home-assistant.io/_/piper/icon.png
+description: >-
+  Server Wyoming per Piper: trasforma il testo in voce (Text-to-Speech) in locale,
+  con voci neurali italiane di buona qualita' e latenza bassissima.
+
+
+  E' la "voce" dell'assistente Assist di Home Assistant nella versione container
+  (senza Supervisor), dove gli Add-on non sono disponibili.
+
+
+  Espone il protocollo Wyoming su TCP 10200 e, in piu', una piccola API HTTP sulla
+  porta 5000 raggiungibile dalla tile di umbrelOS.
+
+
+  Come collegarlo a Home Assistant:
+
+  1. Impostazioni -> Dispositivi e servizi -> Aggiungi integrazione -> Wyoming Protocol
+
+  2. Host: localhost   Porta: 10200
+
+  3. Impostazioni -> Assistenti vocali -> scegli "piper" come Text-to-speech
+
+
+  Voce predefinita: it_IT-paola-medium. Alternative italiane disponibili:
+  it_IT-serena-high (piu' naturale, piu' pesante), it_IT-serena-medium,
+  it_IT-riccardo-x_low (voce maschile, leggerissima). Si cambiano modificando il
+  parametro --voice nel docker-compose.yml.
+developer: Rhasspy / Michael Hansen
+website: https://github.com/OHF-voice/piper1-gpl
+dependencies: []
+repo: https://github.com/rhasspy/wyoming-addons
+support: https://github.com/rhasspy/wyoming-addons/issues
+port: 10201
+gallery: []
+path: ""
+defaultUsername: ""
+defaultPassword: ""

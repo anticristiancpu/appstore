@@ -1,0 +1,21 @@
+version: "3.7"
+
+services:
+  app_proxy:
+    environment:
+      APP_HOST: anticristiancpu-piper_server_1
+      APP_PORT: 5000
+      PROXY_AUTH_ADD: "false"
+
+  server:
+    image: rhasspy/wyoming-piper:2.4.2
+    restart: on-failure
+    environment:
+      TZ: "Europe/Rome"
+    command:
+      - "--voice"
+      - "it_IT-paola-medium"
+    ports:
+      - "10200:10200"
+    volumes:
+      - ${APP_DATA_DIR}/data:/data
