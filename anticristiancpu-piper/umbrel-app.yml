@@ -2,7 +2,7 @@ manifestVersion: 1.1
 id: anticristiancpu-piper
 category: automation
 name: Wyoming Piper (TTS)
-version: "2.4.2"
+version: "2.4.2-1"
 tagline: Sintesi vocale italiana locale per Home Assistant
 icon: https://brands.home-assistant.io/_/piper/icon.png
 description: >-
@@ -41,6 +41,8 @@ website: https://github.com/OHF-voice/piper1-gpl
 dependencies: []
 repo: https://github.com/rhasspy/wyoming-addons
 support: https://github.com/rhasspy/wyoming-addons/issues
+releaseNotes: >-
+  Attivata l'interfaccia web di gestione voci, raggiungibile dalla tile di umbrelOS.
 port: 10201
 gallery: []
 path: ""
