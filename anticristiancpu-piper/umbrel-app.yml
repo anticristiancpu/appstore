@@ -14,8 +14,9 @@ description: >-
   (senza Supervisor), dove gli Add-on non sono disponibili.
 
 
-  Espone il protocollo Wyoming su TCP 10200 e, in piu', una piccola API HTTP sulla
-  porta 5000 raggiungibile dalla tile di umbrelOS.
+  Espone il protocollo Wyoming su TCP 10200 e, cliccando la tile in umbrelOS,
+  un'interfaccia web per gestire le voci: scaricare quelle della community e
+  caricare voci personalizzate, senza toccare la riga di comando.
 
 
   Come collegarlo a Home Assistant:
@@ -29,8 +30,12 @@ description: >-
 
   Voce predefinita: it_IT-paola-medium. Alternative italiane disponibili:
   it_IT-serena-high (piu' naturale, piu' pesante), it_IT-serena-medium,
-  it_IT-riccardo-x_low (voce maschile, leggerissima). Si cambiano modificando il
-  parametro --voice nel docker-compose.yml.
+  it_IT-riccardo-x_low (voce maschile, leggerissima). Si cambiano dalla UI web
+  o modificando il parametro --voice nel docker-compose.yml.
+
+
+  Per la clonazione vocale da un campione audio, sostituisci l'immagine con il
+  tag 2.4.2-omnivoice e aggiungi --backend omnivoice (vedi README).
 developer: Rhasspy / Michael Hansen
 website: https://github.com/OHF-voice/piper1-gpl
 dependencies: []
