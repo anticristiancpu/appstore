@@ -13,10 +13,6 @@ services:
     environment:
       TZ: "Europe/Rome"
     command:
-      - "--preload-model"
-      - "ok_nabu"
-      - "--preload-model"
-      - "hey_jarvis"
       - "--custom-model-dir"
       - "/custom"
       - "--threshold"

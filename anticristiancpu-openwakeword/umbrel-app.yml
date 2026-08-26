@@ -2,7 +2,7 @@ manifestVersion: 1.1
 id: anticristiancpu-openwakeword
 category: automation
 name: Wyoming openWakeWord
-version: "2.1.0"
+version: "2.1.0-1"
 tagline: Rilevamento parola di attivazione per Home Assistant
 icon: https://brands.home-assistant.io/_/openwakeword/icon.png
 description: >-
@@ -29,14 +29,22 @@ description: >-
   3. Impostazioni -> Assistenti vocali -> sezione "Parola di attivazione"
 
 
-  Modelli precaricati: ok_nabu e hey_jarvis. Puoi aggiungerne altri ripetendo il
-  parametro --preload-model nel docker-compose.yml, o mettere modelli .tflite
-  personalizzati nella cartella dati dell'app (montata su /custom).
+  Modelli inclusi nel pacchetto, gia' selezionabili da Home Assistant senza
+  configurazione: okay_nabu, hey_jarvis, alexa, hey_mycroft, hey_rhasspy.
+  Nessun download al primo avvio.
+
+
+  Per parole di attivazione personalizzate, copia i file .tflite nella cartella
+  custom dei dati dell'app (montata su /custom) e riavvia.
+
+
 developer: Rhasspy / David Scripka
 website: https://github.com/dscripka/openWakeWord
 dependencies: []
 repo: https://github.com/rhasspy/wyoming-addons
 support: https://github.com/rhasspy/wyoming-addons/issues
+releaseNotes: >-
+  Rimossi i flag --preload-model, deprecati e ignorati dalla 2.1.0.
 port: 10401
 gallery: []
 path: ""
